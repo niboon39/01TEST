@@ -90,12 +90,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   GPIO_PinState state[2] ;// State switch
-  /* Frequency
-   * .5Hz: 1000
-   * 1Hz : 500
-   * 2Hz : 250
-   * 3Hz : 125
-   * */
   uint16_t LED_half_prieod = 500 ; // 1Hz
   uint32_t Timestapm = 0 ;
 
@@ -106,14 +100,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
 	/* Test Blink LED */
 	// Program is running
 //	HAL_GPIO_WritePin(GPIOA , GPIO_PIN_5 , GPIO_PIN_SET) ;
 //	HAL_Delay(1000);
 //	HAL_GPIO_WritePin(GPIOA , GPIO_PIN_5 , GPIO_PIN_RESET) ;
 //	HAL_Delay(1000);
-
 	  /* Check half period */
 //	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
 //	HAL_Delay(LED_half_prieod);
@@ -124,14 +116,10 @@ int main(void)
 	state[0] = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13); // array[0] = read state now
 
 	if (state[1] == 1  && state[0] == 0  ){
-		if (LED_half_prieod == 1000){
-			LED_half_prieod = 500 ;
-		}else if (LED_half_prieod == 500){
+		if (LED_half_prieod == 500){
 			LED_half_prieod = 250 ;
-		}else if (LED_half_prieod == 250){
-			LED_half_prieod = 125 ;
 		}else{
-			LED_half_prieod = 1000 ;
+			LED_half_prieod = 500 ;
 		}
 	}
 	state[1] = state[0] ;
