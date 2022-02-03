@@ -55,19 +55,7 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-GPIO_PinState state[2] ;// State switch S1
-  /* Frequency
-   * .5Hz: 1000
-   * 1Hz : 500
-   * 2Hz : 250
-   * 3Hz : 125
-   * */
-uint16_t LED_half_prieod = 1000 ; // 1Hz
-uint32_t Timestapm = 0 ;
 
-uint8_t led_state = 1 ;
-uint8_t button_current ; // Read button switch
-uint8_t button_Previous = 0 ;
 /* USER CODE END 0 */
 
 /**
@@ -101,6 +89,19 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  GPIO_PinState state[2] ;// State switch S1
+  /* Frequency
+   * .5Hz: 1000
+   * 1Hz : 500
+   * 2Hz : 250
+   * 3Hz : 125
+   * */
+  uint16_t LED_half_prieod = 1000 ; // 1Hz
+  uint32_t Timestapm = 0 ;
+
+  uint8_t led_state = 1 ;
+  uint8_t button_current ; // Read button switch
+  uint8_t button_Previous = 0 ;
 
   /* USER CODE END 2 */
 
@@ -152,7 +153,7 @@ int main(void)
 	}
 
 	/* 2 */
-	button_current = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) ;
+	button_current = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5) ;
 
 	if (button_current == 1 && button_Previous == 0 ){
 		if (led_state == 1){
@@ -162,7 +163,7 @@ int main(void)
 			  led_state = 1  ;
 		  }
 	  }
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, led_state);
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, led_state);
 
 	  button_Previous = button_current ;
 
