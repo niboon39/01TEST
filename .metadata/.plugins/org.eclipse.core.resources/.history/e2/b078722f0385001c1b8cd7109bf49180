@@ -123,49 +123,45 @@ int main(void)
 //	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
 //	HAL_Delay(LED_half_prieod);
 
-    /* 1 */
 	// Read button pin state
-	state[0] = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13); // array[0] = read state now
+//	state[0] = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13); // array[0] = read state now
+//
+//	if (state[1] == 1  && state[0] == 0  ){
+//		if (LED_half_prieod == 1000){
+//			LED_half_prieod = 500 ;
+//		}else if (LED_half_prieod == 500){
+//			LED_half_prieod = 250 ;
+//		}else if (LED_half_prieod == 250){
+//			LED_half_prieod = 125 ;
+//		}else{
+//			LED_half_prieod = 1000 ;
+//		}
+//	}
+//	state[1] = state[0] ;
+//
+//
+//	if (HAL_GetTick() - Timestapm >= LED_half_prieod){
+//		// Now
+//		Timestapm = HAL_GetTick() ;
+//		if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == 1 )
+//		{
+//			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 0);
+//		}else{
+//			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 1);
+//		}
+//	}
 
-	if (state[1] == 1  && state[0] == 0  ){
-		if (LED_half_prieod == 1000){
-			LED_half_prieod = 500 ;
-		}else if (LED_half_prieod == 500){
-			LED_half_prieod = 250 ;
-		}else if (LED_half_prieod == 250){
-			LED_half_prieod = 125 ;
-		}else{
-			LED_half_prieod = 1000 ;
-		}
-	}
-	state[1] = state[0] ;
+	  button_current = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5) ;
 
-
-	if (HAL_GetTick() - Timestapm >= LED_half_prieod){
-		// Now
-		Timestapm = HAL_GetTick() ;
-		if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == 1 )
-		{
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 0);
-		}else{
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 1);
-		}
-	}
-
-	/* 2 */
-	button_current = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5) ;
-
-	if (button_current == 1 && button_Previous == 0 ){
-		if (led_state == 1){
+	  if (button_current == 1 && button_Previous == 0 ){
+		  if (led_state == 1){
 			  led_state = 0  ;
 		  }
 		  else{
 			  led_state = 1  ;
 		  }
 	  }
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, led_state);
 
-	  button_Previous = button_current ;
 
 
     /* USER CODE END WHILE */
